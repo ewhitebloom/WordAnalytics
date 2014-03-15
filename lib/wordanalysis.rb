@@ -29,6 +29,7 @@ class WordAnalysis
   def common_words
     counts = {}
     @words.each do |word|
+      word.downcase!
       if counts.has_key?(word)
         counts[word] += 1
       else
@@ -43,6 +44,7 @@ class WordAnalysis
   def common_letters
     counts = {}
     @letters.each do |letter|
+      letter.downcase!
       if counts.has_key?(letter)
         counts[letter] += 1
       else

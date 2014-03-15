@@ -36,21 +36,10 @@ class WordAnalysis
 
   def common_items(words_or_letters)
     counts = {}
-    if words_or_letters.downcase == 'words'
-      items = @words
-    elsif words_or_letters.downcase == 'letters'
-      items = @letters
-    else
-      "Please ask for 'words' or 'letters'."
-      exit
-    end
+    if words_or_letters.downcase == 'words'; items = @words; elsif words_or_letters.downcase == 'letters'; items = @letters; else "Please ask for 'words' or 'letters'."; exit; end;
     items.each {|item| item.downcase!; if counts.has_key?(item); counts[item] += 1; else counts[item] = 1; end;}
     top = []
     counts.sort_by{ |k,v| v }.each{ |pair| top << pair[0] }
-    if words_or_letters.downcase == 'words'
-      top[-3..-1].reverse.join("\t")
-    else
-      top[-3..-1].join("\t")
-    end
+    if words_or_letters.downcase == 'words'; top[-3..-1].reverse.join("\t"); else; top[-3..-1].join("\t"); end;
   end
 end

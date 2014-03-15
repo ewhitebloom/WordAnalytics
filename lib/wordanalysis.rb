@@ -30,17 +30,13 @@ class WordAnalysis
     counts = {}
     if words_or_letters.downcase == 'words'
       items = @words
-    else
+    elsif words_or_letters.downcase == 'letters'
       items = @letters
+    else
+      "Please ask for 'words' or 'letters'."
+      exit
     end
-    items.each do |item|
-      item.downcase!
-      if counts.has_key?(item)
-        counts[item] += 1
-      else
-        counts[item] = 0
-      end
-    end
+    items.each {|item| item.downcase!; if counts.has_key?(item); counts[item] += 1; else counts[item] = 0; end;}
     top = []
     counts.sort_by{ |k,v| v }.each{ |pair| top << pair[0] }
     if words_or_letters.downcase == 'words'

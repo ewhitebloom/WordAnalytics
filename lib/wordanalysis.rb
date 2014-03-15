@@ -26,33 +26,27 @@ class WordAnalysis
     indexed.join("\t")
   end
 
-  def common_words
+  def common_items(words_or_letters)
     counts = {}
-    @words.each do |word|
-      word.downcase!
-      if counts.has_key?(word)
-        counts[word] += 1
+    if words_or_letters.downcase == 'words'
+      items = @words
+    else
+      items = @letters
+    end
+    items.each do |item|
+      item.downcase!
+      if counts.has_key?(item)
+        counts[item] += 1
       else
-        counts[word] = 0
+        counts[item] = 0
       end
     end
     top = []
     counts.sort_by{ |k,v| v }.each{ |pair| top << pair[0] }
-    top[-3..-1].reverse.join("\t")
-  end
-
-  def common_letters
-    counts = {}
-    @letters.each do |letter|
-      letter.downcase!
-      if counts.has_key?(letter)
-        counts[letter] += 1
-      else
-        counts[letter] = 0
-      end
+    if words_or_letters.downcase == 'words'
+      top[-3..-1].reverse.join("\t")
+    else
+      top[-3..-1].join("\t")
     end
-    top = []
-    counts.sort_by{ |k,v| v }.each{ |pair| top << pair[0] }
-    top[-3..-1].join("\t")
   end
 end

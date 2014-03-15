@@ -28,14 +28,14 @@ describe WordAnalysis do
   describe '#common_words' do
     let(:wordanalysis) { WordAnalysis.new("dog cat lizard gerbil dog cat cat dog parrot parrot hamster")}
     it 'calculates the 3 most common words' do
-      expect(wordanalysis.common_words).to eql("dog\tcat\tparrot")
+      expect(wordanalysis.common_items('Words')).to eql("dog\tcat\tparrot")
     end
   end
 
   describe '#common_letters' do
     let(:wordanalysis) { WordAnalysis.new("jjjjj llllll oooooo ddd aa")}
     it 'calculates the 3 most common letters' do
-      expect(wordanalysis.common_letters).to eql("j\tl\to")
+      expect(wordanalysis.common_items('Letters')).to eql("j\tl\to")
     end
   end
 

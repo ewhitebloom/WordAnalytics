@@ -35,15 +35,10 @@ describe WordAnalysis do
   end
 
   describe '#common_letters' do
+    let(:wordanalysis) { WordAnalysis.new("jjjjj llllll oooooo ddd aa")}
     it 'calculates the 3 most common letters' do
-      # expect(circle.diameter).to eql(14)
+      expect(wordanalysis.common_letters).to eql("j\tl\to")
     end
   end
-#
-#   describe '#circumference' do
-#   it 'calculates the circumference' do
-#     expect(circle.circumference).to be_within(tolerance).of(43.98)
-#   end
-# end
 
 end

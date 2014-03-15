@@ -56,6 +56,3 @@ class WordAnalysis
     top[-3..-1].join("\t")
   end
 end
-
-
-print WordAnalysis.new("dog dog cat cat parrot parrot gerbil").common_words

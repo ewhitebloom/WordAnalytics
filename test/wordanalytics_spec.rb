@@ -32,6 +32,13 @@ describe WordAnalysis do
     end
   end
 
+  describe '#once' do
+    let(:wordanalysis) { WordAnalysis.new("dog cat lizard gerbil dog cat cat dog parrot parrot hamster")}
+    it 'calculates number of words used only once' do
+      expect(wordanalysis.once).to eql(3)
+    end
+  end
+
   describe '#common_letters' do
     let(:wordanalysis) { WordAnalysis.new("jjjjj llllll oooooo ddd aa")}
     it 'calculates the 3 most common letters' do

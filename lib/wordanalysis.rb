@@ -26,6 +26,14 @@ class WordAnalysis
     indexed.join("\t")
   end
 
+  def once
+    counts = {}
+    @words.each {|word| word.downcase!; if counts.has_key?(word); counts[word] += 1; else counts[word] = 1; end;}
+    counter = 0
+    counts.sort_by{ |k,v| v }.each{ |pair| if pair[1] == 1; counter += 1; end; }
+    counter
+  end
+
   def common_items(words_or_letters)
     counts = {}
     if words_or_letters.downcase == 'words'
@@ -36,7 +44,7 @@ class WordAnalysis
       "Please ask for 'words' or 'letters'."
       exit
     end
-    items.each {|item| item.downcase!; if counts.has_key?(item); counts[item] += 1; else counts[item] = 0; end;}
+    items.each {|item| item.downcase!; if counts.has_key?(item); counts[item] += 1; else counts[item] = 1; end;}
     top = []
     counts.sort_by{ |k,v| v }.each{ |pair| top << pair[0] }
     if words_or_letters.downcase == 'words'

@@ -14,12 +14,16 @@ class WordAnalysis
   def letter_index
     split = @string.chars
     indexed = []
-    counter = 0
-    split.each_with_index{ |item,index| if item != ' '; indexed << "#{ index + 1 }:#{item}"; end; }
+    counter = 1
+    split.each{ |letter| if letter != ' '; indexed << "#{ counter }:#{letter}"; counter += 1 ; end; }
     indexed.join("\t")
   end
 
   def symbol_index
+    split = @string.scan(/[^0-9a-z ]/i)
+    indexed = []
+    split.each_with_index{ |item,index| indexed << "#{ index + 1 }:#{item}" }
+    indexed.join("\t")
   end
 
   def common_words
@@ -30,4 +34,4 @@ class WordAnalysis
 end
 
 
-print WordAnalysis.new("It's a string with some stuff in it").word_index
+print WordAnalysis.new("There's 'jim'; age: 20.").symbol_index

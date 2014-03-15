@@ -20,8 +20,9 @@ describe WordAnalysis do
   end
 
   describe '#symbol_index' do
+    let(:wordanalysis) { WordAnalysis.new("There's 'jim'; age: 20.")}
     it 'calculates the index of each symbol' do
-      # expect(circle.diameter).to eql(14)
+      expect(wordanalysis.symbol_index).to eql("1:'\t2:'\t3:'\t4:;\t5::\t6:.")
     end
   end
 

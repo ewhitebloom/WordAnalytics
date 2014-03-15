@@ -6,21 +6,21 @@ describe WordAnalysis do
   describe '#word_index' do
     let(:wordanalysis) { WordAnalysis.new("This is a sort of really long string.")}
     it 'calculates the index of each word' do
-      expect(wordanalysis.word_index).to eql("1:This\t2:is\t3:a\t4:sort\t5:of\t6:really\t7:long\t8:string.")
+      expect(wordanalysis.word_index).to eql("1)This\t2)is\t3)a\t4)sort\t5)of\t6)really\t7)long\t8)string.")
     end
   end
 
   describe '#letter_index' do
     let(:wordanalysis) { WordAnalysis.new("A String")}
     it 'calculates the index of each letter' do
-      expect(wordanalysis.letter_index).to eql("1:A\t2:S\t3:t\t4:r\t5:i\t6:n\t7:g")
+      expect(wordanalysis.letter_index).to eql("1)A\t2)S\t3)t\t4)r\t5)i\t6)n\t7)g")
     end
   end
 
   describe '#symbol_index' do
     let(:wordanalysis) { WordAnalysis.new("There's 'jim'; age: 20.")}
     it 'calculates the index of each symbol' do
-      expect(wordanalysis.symbol_index).to eql("1:'\t2:'\t3:'\t4:;\t5::\t6:.")
+      expect(wordanalysis.symbol_index).to eql("1)'\t2)'\t3)'\t4);\t5):\t6).")
     end
   end
 

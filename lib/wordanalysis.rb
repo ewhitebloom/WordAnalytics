@@ -1,5 +1,4 @@
 class WordAnalysis
-  require 'pry'
 
   def initialize(string)
     @string = string

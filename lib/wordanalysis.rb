@@ -2,20 +2,19 @@ class WordAnalysis
 
   def initialize(string)
     @string = string
+    @split = string.split
   end
 
   def word_index
-    split = @string.split
     indexed = []
-    split.each_with_index{ |item,index| indexed << "#{ index + 1 }:#{item}" }
+    @split.each_with_index{ |item,index| indexed << "#{ index + 1 }:#{item}" }
     indexed.join("\t")
   end
 
   def letter_index
-    split = @string.chars
     indexed = []
     counter = 1
-    split.each{ |letter| if letter != ' '; indexed << "#{ counter }:#{letter}"; counter += 1 ; end; }
+    @string.chars.each{ |letter| if letter != ' '; indexed << "#{ counter }:#{letter}"; counter += 1 ; end; }
     indexed.join("\t")
   end
 
@@ -27,6 +26,17 @@ class WordAnalysis
   end
 
   def common_words
+    counts = {}
+    @split.each do |word|
+      if counts.has_key?(word)
+        counts[word] += 1
+      else
+        counts[word] = 0
+      end
+    end
+    top = []
+    counts.sort_by{ |k,v| v }.each{ |pair| top << pair[0] }
+    top[-3..-1].reverse.join("\t")
   end
 
   def common_letters
@@ -34,4 +44,4 @@ class WordAnalysis
 end
 
 
-print WordAnalysis.new("There's 'jim'; age: 20.").symbol_index
+print WordAnalysis.new("dog dog cat cat parrot parrot gerbil").common_words

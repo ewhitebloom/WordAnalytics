@@ -2,9 +2,7 @@ require 'rspec'
 require_relative '../lib/wordanalysis'
 
 describe WordAnalysis do
-#   let(:pi) { 3.14159265359 }
-#   let(:tolerance) { 0.01 }
-#
+
   describe '#word_index' do
     let(:wordanalysis) { WordAnalysis.new("This is a sort of really long string.")}
     it 'calculates the index of each word' do

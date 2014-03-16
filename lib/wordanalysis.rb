@@ -22,7 +22,7 @@ class WordAnalysis
 
   def common_items(counts)
     top = []
-    counts.each{ |pair| top << pair[0]; }
-    top[0..2].join("\t")
+    counts[0..2].each{ |pair| top << pair[0]; }
+    top.join("\t")
   end
 end

@@ -3,24 +3,24 @@ require_relative '../lib/wordanalysis'
 
 describe WordAnalysis do
 
-  describe '#word_index' do
-    let(:wordanalysis) { WordAnalysis.new("This is a sort of really long string.")}
-    it 'calculates the index of each word' do
-      expect(wordanalysis.word_index).to eql("1)This\t2)is\t3)a\t4)sort\t5)of\t6)really\t7)long\t8)string.")
+  describe '#word_count' do
+    let(:wordanalysis) { WordAnalysis.new("lorem ipsum hi hi bye bye hi")}
+    it 'calculates the count of each word' do
+      expect(wordanalysis.count('word')).to eql([["hi", 3], ["bye", 2], ["ipsum", 1], ["lorem", 1]])
     end
   end
 
-  describe '#letter_index' do
-    let(:wordanalysis) { WordAnalysis.new("A String")}
-    it 'calculates the index of each letter' do
-      expect(wordanalysis.letter_index).to eql("1)A\t2)S\t3)t\t4)r\t5)i\t6)n\t7)g")
+  describe '#letter_count' do
+    let(:wordanalysis) { WordAnalysis.new("gggg hhhh k i oooooo jjjjjjjj")}
+    it 'calculates the count of each letter' do
+      expect(wordanalysis.count('letter')).to eql([["j", 8], ["o", 6], ["h", 4], ["g", 4], ["k", 1], ["i", 1]])
     end
   end
 
-  describe '#symbol_index' do
+  describe '#symbol_count' do
     let(:wordanalysis) { WordAnalysis.new("There's 'jim'; age: 20.")}
-    it 'calculates the index of each symbol' do
-      expect(wordanalysis.symbol_index).to eql("1)'\t2)'\t3)'\t4);\t5):\t6).")
+    it 'calculates the count of each symbol' do
+      expect(wordanalysis.count('symbol')).to eql([["'", 3], [":", 1], [";", 1], [".", 1]])
     end
   end
 
@@ -28,21 +28,21 @@ describe WordAnalysis do
   describe '#common_words' do
     let(:wordanalysis) { WordAnalysis.new("dog cat lizard gerbil dog cat cat dog parrot parrot hamster")}
     it 'calculates the 3 most common words' do
-      expect(wordanalysis.common_items('Words')).to eql("dog\tcat\tparrot")
+      expect(wordanalysis.common_items(wordanalysis.count('word'))).to eql("dog\tcat\tparrot")
     end
   end
 
   describe '#once' do
     let(:wordanalysis) { WordAnalysis.new("dog cat lizard gerbil dog cat cat dog parrot parrot hamster")}
     it 'calculates number of words used only once' do
-      expect(wordanalysis.once).to eql(3)
+      expect(wordanalysis.once(wordanalysis.count('word'))).to eql(3)
     end
   end
 
   describe '#common_letters' do
-    let(:wordanalysis) { WordAnalysis.new("jjjjj llllll oooooo ddd aa")}
+    let(:wordanalysis) { WordAnalysis.new("n mmmmmmmm kkkkkkkkkk r j oooooo ")}
     it 'calculates the 3 most common letters' do
-      expect(wordanalysis.common_items('Letters')).to eql("j\tl\to")
+      expect(wordanalysis.common_items(wordanalysis.count('Letter'))).to eql("k\tm\to")
     end
   end
 

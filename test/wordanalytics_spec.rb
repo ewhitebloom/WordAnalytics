@@ -27,22 +27,25 @@ describe WordAnalysis do
 
   describe '#common_words' do
     let(:wordanalysis) { WordAnalysis.new("dog cat lizard gerbil dog cat cat dog parrot parrot hamster")}
+    let(:count) { wordanalysis.count('word') }
     it 'calculates the 3 most common words' do
-      expect(wordanalysis.common_items(wordanalysis.count('word'))).to eql("dog\tcat\tparrot")
+      expect(wordanalysis.common_items(count)).to eql("dog\tcat\tparrot")
     end
   end
 
   describe '#once' do
     let(:wordanalysis) { WordAnalysis.new("dog cat lizard gerbil dog cat cat dog parrot parrot hamster")}
+    let(:count) { wordanalysis.count('word') }
     it 'calculates number of words used only once' do
-      expect(wordanalysis.once(wordanalysis.count('word'))).to eql(3)
+      expect(wordanalysis.once(count)).to eql(3)
     end
   end
 
   describe '#common_letters' do
     let(:wordanalysis) { WordAnalysis.new("n mmmmmmmm kkkkkkkkkk r j oooooo ")}
+    let(:count) { wordanalysis.count('letter') }
     it 'calculates the 3 most common letters' do
-      expect(wordanalysis.common_items(wordanalysis.count('Letter'))).to eql("k\tm\to")
+      expect(wordanalysis.common_items(count)).to eql("k\tm\to")
     end
   end
 

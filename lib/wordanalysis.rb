@@ -3,8 +3,8 @@ class WordAnalysis
   def initialize(string)
     @string = string
     @words = string.split
-    @letters = string.scan(/[0-9a-z\S]/i)
-    @symbols = string.scan(/[^0-9a-z\s]/i)
+    @letters = string.scan(/[a-z]/i)
+    @symbols = string.scan(/[^0-9a-z ]/i)
   end
 
   def count(word_letter_or_symbol)

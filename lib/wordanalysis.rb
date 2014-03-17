@@ -3,14 +3,14 @@ class WordAnalysis
   def initialize(string)
     @string = string
     @words = string.split
-    @letters = string.scan(/[0-9a-z ]/i)
-    @symbols = string.scan(/[^0-9a-z ]/i)
+    @letters = string.scan(/[0-9a-z\S]/i)
+    @symbols = string.scan(/[^0-9a-z\s]/i)
   end
 
   def count(word_letter_or_symbol)
     if word_letter_or_symbol.downcase == 'word'; items = @words; elsif word_letter_or_symbol.downcase == 'letter'; items = @letters; elsif word_letter_or_symbol.downcase == 'symbol'; items = @symbols; else; puts 'Please ask for word, letter or symbol count.'; exit; end;
     counts = {}
-    items.each { |item| item.downcase!; unless item == ' '; if counts.has_key?(item); counts[item] += 1; else counts[item] = 1; end; end; }
+    items.each { |item| item.downcase!; if counts.has_key?(item); counts[item] += 1; else counts[item] = 1; end; }
     counts.sort_by{ |k,v| v }.reverse
   end
 
